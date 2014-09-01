@@ -143,8 +143,11 @@
                 $(".popover-dismiss").popover({
                     trigger: 'focus'
                 });
+                $(window).load(function(){
                 $('.make-visible').css('visibility','visible').hide().fadeIn(2000);
+                });
             });
         </script>
     </body>
 </html>
+
