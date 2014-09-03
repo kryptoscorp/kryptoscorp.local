@@ -10,14 +10,13 @@ class UserController extends \BaseController {
 	public function index()
 	{
 		// list all users
-		$users = User::all();
+		$users = User::where('admin','=','false')->get();
 
 		if (Auth::check()){
 			$admin = Auth::user()->getAdmin();
 		}else {
 			$admin = false;
 		}
-
 		return View::make('backend.users.index')->with('users',$users)->with('admin',$admin);
 	}
 

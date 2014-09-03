@@ -102,7 +102,7 @@
                 <div class="container">
                     <ul style="margin-right: 20px" class="nav navbar-nav navbar-right" >
                     @if (Auth::guest())
-                        <li>{{ HTML::link('login','Login') }}</li>
+                        <li>{{ HTML::link('login','Intranet') }}</li>
                     @else
                         <li>{{ HTML::link('users','Administración') }}</li>
                         <li>{{ HTML::link('logout','Logout') }}</li>

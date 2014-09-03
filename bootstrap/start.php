@@ -26,9 +26,9 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('laravel'),
+	'local' => array('homestead'),
 
-    'production' => array('nube.8ssi.com'),
+    'production' => array('kryptoscorp.com'),
 ));
 
 /*

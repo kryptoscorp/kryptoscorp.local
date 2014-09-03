@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration {
 			$table->string('phone')->nullable();
 			$table->string('direccion')->nullable();
 			$table->string('comentarios')->nullable();
-			$table->boolean('admin')->nullable();
+			$table->boolean('admin')->nullable()->default(false);
 			$table->string('remember_token',100)->nullable();
 			$table->timestamps();
 		});
