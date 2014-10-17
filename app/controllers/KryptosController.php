@@ -12,7 +12,7 @@ class KryptosController extends BaseController {
 
 	public function showNosotros()
 	{
-		return View::make('nosotros');
+		return View::make('nosotros2');
 	}
 
 	public function showServicios()

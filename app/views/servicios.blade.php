@@ -14,7 +14,8 @@
 	<div class="col-md-8 text-justify">
 		<h2>Cursos de capacitación</h2>
 		<br>
-		<p style="visibility: hidden" class="make-visible">Cursos de capacitación en software Oracle sistemas operativos Unix, desarrollo y manteniiento de aplicaciones (PHP, Java, PL/SQL).</p> 
+		<p style="visibility: hidden" class="make-visible">Cursos de capacitación en software Oracle sistemas operativos Unix, desarrollo y manteniiento de aplicaciones (PHP, Java, PL/SQL).</p>
+		<p style="visibility: hidden" class="make-visible">Pulse {{ link_to_asset('files/portafolio.pdf', 'aquí') }} para ver nuestro catalogo de cursos</p>
 	</div>
 </div>
 <br>
@@ -38,6 +39,6 @@
 		<br>
 		<p style="visibility: hidden" class="make-visible">Programación en ambiente Java y desarrollo de aplicaciones web en PHP con diseño adaptable a dispositivos moviles. Trabajamos con el framework Laravel y plantillas bootstrap.</p>
 	</div>
-	</div>
+</div>
 	
 @stop

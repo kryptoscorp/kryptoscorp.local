@@ -15,7 +15,6 @@
 
         <!-- CSS are placed here -->
         {{ HTML::style('css/bootstrap.css') }}
-        {{ HTML::style('css/bootstrap-responsive.css') }}
         {{ HTML::style('css/font-awesome.min.css') }}
 
         <!-- otra forma de importar
@@ -84,33 +83,19 @@
         </nav>
     </div>
 
-        <!--content-->
-        <div id="main" class="container-fluid">
-            {{ HTML::ul($errors->all()) }}
-            @if (Session::has('message'))
-                <div class="alert alert-dismissable alert-info">
-                    <button type="button" class="close" data-dismiss="alert">x</button>
-                    {{ Session::get('message') }}
-                </div>
-            @endif
-            @yield('content')
-        </div>
-        <br>
-        <!-- -->
-        <div class="row">
-            <nav class="navbar navbar-inverse">
-                <div class="container">
-                    <ul style="margin-right: 20px" class="nav navbar-nav navbar-right" >
-                    @if (Auth::guest())
-                        <li>{{ HTML::link('login','Intranet') }}</li>
-                    @else
-                        <li>{{ HTML::link('users','Administración') }}</li>
-                        <li>{{ HTML::link('logout','Logout') }}</li>
-                    @endif
-                    </ul>    
-                </div>
-            </nav>
-        </div>
+        <!--content-->         <div id="main" class="container-fluid">
+{{ HTML::ul($errors->all()) }}             @if (Session::has('message'))
+<div class="alert alert-dismissable alert-info">                     <button
+type="button" class="close" data-dismiss="alert">x</button>
+{{ Session::get('message') }}                 </div>             @endif
+@yield('content')         </div>         <br>         <!--end content -->
+<div class="row">             <nav class="navbar navbar-inverse">
+<div class="container">                     <ul style="margin-right: 20px"
+class="nav navbar-nav navbar-right" >                     @if (Auth::guest())
+<li>{{ HTML::link('login','Intranet') }}</li>                     @else
+<li>{{ HTML::link('users','Administración') }}</li>
+<li>{{ HTML::link('logout','Logout') }}</li>                     @endif
+</ul>                     </div>             </nav>         </div>
 
         <!--footer-->
         <div>        
