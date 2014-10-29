@@ -30,4 +30,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->admin;
 	}
 
+	public function events(){
+		return $this->hasmany('Cevent');
+	}
+
 }

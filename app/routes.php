@@ -29,11 +29,15 @@ Route::post('contacto',array ('uses'=>'KryptosController@sendMail'));
 
 
 Route::group(array('before'=>'auth'), function(){
+	Route::get('backend',array('uses'=>'KryptosController@showBackend','as'=>'backend'));
 	Route::resource('users','UserController');
+	Route::resource('events','CeventController');
 });
 
 Route::group(array('before'=>'admin'), function(){
-	Route::resource('users','UserController', array('only'=> array('create','store','edit','update','destroy')));	
+	Route::resource('users','UserController', array('only'=> array('create','store','edit','update','destroy')));
+	Route::resource('events','CeventController', array('only'=> array('create','store','edit','update','destroy')));	
+
 });
 
 

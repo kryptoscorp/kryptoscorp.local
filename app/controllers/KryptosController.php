@@ -30,6 +30,16 @@ class KryptosController extends BaseController {
 		return View::make('contacto');
 	}
 
+	public function showBackend()
+	{
+		if (Auth::check()){
+			$admin = Auth::user()->getAdmin();
+		}else {
+			$admin = false;
+		}
+		return View::make('backend.index')->with('admin',$admin);
+	}
+
 	public function sendMail()
 	{
 		$data = Input::all();

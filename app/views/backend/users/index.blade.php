@@ -45,5 +45,5 @@
 	@if ($admin)
 	<a class="btn btn-sm btn-primary" href="{{ URL::to('users/create') }}">Crear usuario</a>
 	@endif -->
-	@include('usernav', array('admin'=>$admin))
+@include('layouts.usernav', array('admin'=>$admin))
 @stop

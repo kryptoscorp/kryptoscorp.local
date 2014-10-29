@@ -60,7 +60,7 @@
 					{{ Form::label('comentarios','Comentarios', array('class' => 'col-lg-3 control-label')) }}
 					<div class="col-lg-8">
 						{{ Form::textarea('comentarios', null, array('class' => 'form-control', 'rows' => '3')) }}
-						<span class="help-block">Actitudes.</span>
+						<span class="help-block">Aptitudes.</span>
 					</div>
 				</div>
 				

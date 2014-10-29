@@ -9,9 +9,9 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		// list all users
+		// list all users except admin
 		$users = User::where('admin','=','false')->get();
-
+		//$users = User::all();
 		if (Auth::check()){
 			$admin = Auth::user()->getAdmin();
 		}else {
@@ -28,7 +28,7 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		// 
 		if (Auth::check()){
 			$admin = Auth::user()->getAdmin();
 		}else {
@@ -67,8 +67,9 @@ class UserController extends \BaseController {
 			$user -> phone = Input::get('phone');
 			$user -> direccion = Input::get('direccion');
 			$user -> comentarios = Input::get('comentarios');
-			$user -> admin = Input::get('admin');
-
+			if (Input::get('admin')){
+				$user -> admin = Input::get('admin');
+			}
 			$user -> save();
 
 			Session::flash('message','Usuario creado!!');
