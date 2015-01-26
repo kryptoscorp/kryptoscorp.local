@@ -10,13 +10,18 @@ class CeventController extends \BaseController {
 	public function index()
 	{
 		//list all cevents
-		$events = Cevent::all();
-		if (Auth::check()){
-			$admin = Auth::user()->getAdmin();
+		if ((Auth::check()) and(Auth::user()->getAdmin()) ){
+			$events = Cevent::all();
+			return View::make('backend.events.index')->with('events',$events)->with('admin',Auth::user()->getAdmin());	
 		}else {
+			$id=Auth::id();
+			$events = Cevent::where('user_id','=',$id)->get();
+			//$posts = Post::has('comments')->get();
 			$admin = false;
+			//return var_dump($events);
+			return View::make('backend.events.index')->with('events',$events)->with('admin',$admin);
 		}
-		return View::make('backend.events.index')->with('events',$events)->with('admin',$admin);
+		
 	}
 
 
@@ -44,6 +49,8 @@ class CeventController extends \BaseController {
 		$rules = array(
 			'name' => 'required',
 			'consultores' => 'required',
+			'email_cliente' => 'required|email',
+			'direccion' => 'required',
 			'fecha_inicio' => 'required|date',
 			'fecha_final' => 'required|date',
 			'fecha_cobro' => 'required|date',
@@ -57,6 +64,9 @@ class CeventController extends \BaseController {
 			$event = new Cevent;
 			$event -> name = Input::get('name');
 			$event -> users()->associate($consultor);
+			$event -> email_cliente = Input::get('email_cliente');
+			$event -> direccion = Input::get('direccion');
+			$event -> comentarios = Input::get('comentarios');
 			$event -> fecha_inicio = Input::get('fecha_inicio');
 			$event -> fecha_final = Input::get('fecha_final');
 			$event -> fecha_cobro = Input::get('fecha_cobro');
@@ -131,11 +141,33 @@ class CeventController extends \BaseController {
 	public function destroy($id)
 	{
 		//delete
-		$cevent = cevent::find($id);
+		$cevent = Cevent::find($id);
 		$cevent -> delete();
 
 		Session::flash('message', 'Evento eliminado');
 		return Redirect::to('events');
+	}
+
+	public function sendMail($id)
+	{
+		$cevent = Cevent::find($id)->toArray();
+		$ceventRec = Cevent::find($id);
+		$data = array(
+			'evento'=> $ceventRec->name,
+			'consultor'	=> $ceventRec->users->name,
+			'direccion' => $ceventRec->direccion,
+			'inicio' => $ceventRec->fecha_inicio,
+			'fin' => $ceventRec->fecha_final,
+		);
+		Mail::send('emails.confirmacion', $data, function($message) use ($ceventRec) {
+			$message->from('confirmacion@kryptoscorp.com');
+			$message->to($ceventRec->email_cliente,'Estimado cliente')
+			->cc($ceventRec->users->email)->cc('contacto@kryptoscrop.com')->subject('Confirmacion evento ' . $ceventRec->name);
+		});
+		$ceventRec -> confirmado = true;
+		$ceventRec -> save();
+		Session::flash('message','Correos de confirmacion enviado');
+			return Redirect::to('events');
 	}
 
 

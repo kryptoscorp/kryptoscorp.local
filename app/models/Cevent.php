@@ -24,7 +24,7 @@ class Cevent extends Eloquent implements UserInterface, RemindableInterface {
 	protected $guarded = array('id','users_id');
 
 	public function users(){
-		return $this->belongsTo('User');
+		return $this->belongsTo('User','user_id');
 	}
 
 }

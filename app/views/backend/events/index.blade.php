@@ -12,21 +12,24 @@
 		<thead>
 			<tr>
 				<td>Nombre</td>
+				<td>Consultor</td>
 				<td>Fecha inicio</td>
 				<td>Fecha culminación</td>
-				<td>Fecha cobro</td>
 			</tr>
 		</thead>
 		<tbody>
 			@foreach ($events as $key => $value)
 				<tr>
 					<td>{{ $value->name }}</td>
+					<td>{{ $value->users->name }}</td>
 					<td>{{ $value->fecha_inicio }}</td>
 					<td>{{ $value->fecha_final }}</td>
-					<td>{{ $value->fecha_cobro }}</td>
 					<td>
 						<div class="wrapper text-center">
 						<div class="btn-group">
+						@if ($value->confirmado)
+						<a style="margin-right: 3px" class="btn btn-sm btn-info pull-left" href="{{ URL::to ('confirmacion/' . $value->id)}}">Confirmar</a>
+						@endif
 						<a style="margin-right: 3px" class="btn btn-sm btn-info pull-left" href="{{ URL::to ('events/' . $value->id)}}">Detalles</a>
 						@if ($admin)
 						<a class="btn btn-sm btn-info pull-left" href="{{ URL::to ('events/' . $value->id) . '/edit'}}">Editar</a>
@@ -35,8 +38,7 @@
 						{{ Form::close() }}
 						@endif
 						</div>	
-						</div>
-						
+						</div>	
 					</td>
 				</tr>
 			@endforeach

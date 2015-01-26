@@ -16,12 +16,16 @@ class CreateEvents extends Migration {
 		Schema::create('cevents', function($table)
 		{
 		    $table->increments('id');
-		    $table->integer('users_id')->unsigned();
-		    $table->foreign('users_id')->references('id')->on('users');
+		    $table->integer('user_id')->unsigned();
+		    $table->foreign('user_id')->references('id')->on('users');
 			$table->string('name',200);
+			$table->string('email_cliente',100);
+			$table->string('direccion');
+			$table->string('comentarios');
 			$table->date('fecha_inicio');
 			$table->date('fecha_final');
 			$table->date('fecha_cobro');
+			$table->boolean('admin')->nullable()->default(false);
 			$table->timestamps();
 		});
 	}

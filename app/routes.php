@@ -27,6 +27,7 @@ Route::get('contacto',array ('uses'=>'KryptosController@showContacto','as'=>'con
 
 Route::post('contacto',array ('uses'=>'KryptosController@sendMail'));
 
+Route::get('confirmacion/{id}',array ('uses'=>'CeventController@sendMail'));
 
 Route::group(array('before'=>'auth'), function(){
 	Route::get('backend',array('uses'=>'KryptosController@showBackend','as'=>'backend'));
