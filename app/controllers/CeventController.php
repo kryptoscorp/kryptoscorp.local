@@ -55,8 +55,8 @@ class CeventController extends \BaseController {
 			'fecha_final' => 'required|date',
 			'fecha_cobro' => 'required|date',
 		);
-		$consultor = User::find(Input::get('consultores'));
 		$validator = Validator::make(Input::all(),$rules);
+		$consultor = User::find(Input::get('consultores'));
 		if ($validator -> fails()){
 			return Redirect::to('events/create') -> withErrors($validator) -> withInput (Input::except('password'));
 		} else {

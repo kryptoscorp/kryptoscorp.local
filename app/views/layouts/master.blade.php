@@ -34,7 +34,7 @@
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="../">
+                    <a class="navbar-brand" href="{{{ URL::action('KryptosController@showHome') }}}">
                         <i class="fa fa-home"> Kryptos</i>
                     </a>
                     <button class="navbar-toggle collapsed" data-target="#navbar-main" data-toggle="collapse" type="button">
